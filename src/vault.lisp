@@ -1,5 +1,5 @@
 
-(in-package #:fvault)
+(in-package #:vault)
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
 
@@ -98,11 +98,10 @@
   "Define a vault represented by the symbol SYM.
 If used at top level the expander will be defined at compile time."
   (check-type vault symbol)
-  (with-gensyms (docstring name doc-type)
-    `(eval-when (:compile-toplevel :load-toplevel :execute)
-       (setf (vault-object ',vault) (cons (make-hash-table :test 'eq)
-                                          (make-hash-table :test 'eq)))
-       ',vault)))
+  `(eval-when (:compile-toplevel :load-toplevel :execute)
+     (setf (vault-object ',vault) (cons (make-hash-table :test 'eq)
+                                        (make-hash-table :test 'eq)))
+     ',vault))
 
 (defmacro define-vault-function (vault name (&rest args) &body body)
   "Define and insert a function into VAULT. If used at top level the function will be defined at
