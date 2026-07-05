@@ -4,6 +4,7 @@
   :description "A vault of functions and variables"
   :license "MIT"
   :components ((:module "src"
+                :serial t
                 :components ((:file "package")
                              (:file "vault")))))
 
