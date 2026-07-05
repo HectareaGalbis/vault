@@ -82,7 +82,7 @@ We can retrieve the function with [vault\:vault\-function](/README.md#FUNCTION:V
 `````
 `````common-lisp
 ;; Returns
-#<FUNCTION (LAMBDA (X)) {B800DEEC0B}>
+#<FUNCTION (LAMBDA (X)) {B800DEEBAB}>
 `````
 
 And we can call it using [vault\:vault\-funcall](/README.md#FUNCTION:VAULT:VAULT-FUNCALL) or [vault\:vault\-apply](/README.md#FUNCTION:VAULT:VAULT-APPLY)\:
@@ -179,7 +179,7 @@ Functions and variables are in different namespaces\. So\, we can have a functio
 ## Reference
 
 <a id="FUNCTION:VAULT:DEFINE-VAULT-FUNCTION"></a>
-<a id="FUNCTION:VAULT-DOCS:TAG17"></a>
+<a id="FUNCTION:VAULT-DOCS:TAG18"></a>
 #### Macro: vault\:define\-vault\-function \(vault name \(\&rest args\) \&body body\)
 
 `````text
@@ -188,7 +188,7 @@ compile time. NAME must be a symbol denoting the new function. ARGS is an ordina
 `````
 
 <a id="FUNCTION:VAULT:DEFINE-VAULT-VARIABLE"></a>
-<a id="FUNCTION:VAULT-DOCS:TAG11"></a>
+<a id="FUNCTION:VAULT-DOCS:TAG12"></a>
 #### Macro: vault\:define\-vault\-variable \(vault name value\)
 
 `````text
@@ -201,12 +201,20 @@ compile time. NAME must be a symbol denoting the new variable.
 #### Macro: vault\:defvault \(vault\)
 
 `````text
-Define a vault represented by the symbol SYM.
-If used at top level the expander will be defined at compile time.
+Define a new vault denoted by VAULT if it is not defined yet. 
+If used at top level the vault will be defined at compile time.
+`````
+
+<a id="FUNCTION:VAULT:ENSURE-VAULT"></a>
+<a id="FUNCTION:VAULT-DOCS:TAG11"></a>
+#### Function: vault\:ensure\-vault \(vault\)
+
+`````text
+If VAULT is not a vault, defines a new one with that name.
 `````
 
 <a id="FUNCTION:VAULT:VAULT-APPLY"></a>
-<a id="FUNCTION:VAULT-DOCS:TAG16"></a>
+<a id="FUNCTION:VAULT-DOCS:TAG17"></a>
 #### Function: vault\:vault\-apply \(vault name \&rest args\)
 
 `````text
@@ -222,7 +230,7 @@ Call the function NAME from VAULT with ARGS.
 `````
 
 <a id="FUNCTION:VAULT:VAULT-FUNCTION"></a>
-<a id="FUNCTION:VAULT-DOCS:TAG13"></a>
+<a id="FUNCTION:VAULT-DOCS:TAG14"></a>
 #### Function: vault\:vault\-function \(vault name\)
 
 `````text
@@ -230,7 +238,7 @@ Retrieve the function NAME from VAULT.
 `````
 
 <a id="FUNCTION:VAULT:VAULT-FUNCTION-P"></a>
-<a id="FUNCTION:VAULT-DOCS:TAG15"></a>
+<a id="FUNCTION:VAULT-DOCS:TAG16"></a>
 #### Function: vault\:vault\-function\-p \(vault name\)
 
 `````text
@@ -246,7 +254,7 @@ Retrieve the value of the variable NAME from VAULT.
 `````
 
 <a id="FUNCTION:VAULT:VAULT-VARIABLE-P"></a>
-<a id="FUNCTION:VAULT-DOCS:TAG12"></a>
+<a id="FUNCTION:VAULT-DOCS:TAG13"></a>
 #### Function: vault\:vault\-variable\-p \(vault name\)
 
 `````text
@@ -254,7 +262,7 @@ Check if NAME denotes a variable in VAULT.
 `````
 
 <a id="FUNCTION:VAULT:VAULTP"></a>
-<a id="FUNCTION:VAULT-DOCS:TAG14"></a>
+<a id="FUNCTION:VAULT-DOCS:TAG15"></a>
 #### Function: vault\:vaultp \(vault\)
 
 `````text

@@ -94,14 +94,20 @@
     (check-type name symbol)
     (setf (gethash name (vault-variable-object vault)) new-value)))
 
+(defun ensure-vault (vault)
+  "If VAULT is not a vault, defines a new one with that name."
+  (check-type vault symbol)
+  (unless (vaultp vault)
+    (setf (vault-object vault) (cons (make-hash-table :test 'eq)
+                                     (make-hash-table :test 'eq))))
+  vault)
+
 (defmacro defvault (vault)
-  "Define a vault represented by the symbol SYM.
-If used at top level the expander will be defined at compile time."
+  "Define a new vault denoted by VAULT if it is not defined yet. 
+If used at top level the vault will be defined at compile time."
   (check-type vault symbol)
   `(eval-when (:compile-toplevel :load-toplevel :execute)
-     (setf (vault-object ',vault) (cons (make-hash-table :test 'eq)
-                                        (make-hash-table :test 'eq)))
-     ',vault))
+     (ensure-vault ',vault)))
 
 (defmacro define-vault-function (vault name (&rest args) &body body)
   "Define and insert a function into VAULT. If used at top level the function will be defined at
